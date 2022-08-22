@@ -1,0 +1,85 @@
+:root {
+  --fs: 2rem;
+  --h: calc(3rem + 2px);
+  --p: .5rem;
+  --bm: 0 0 .5rem 0;
+  --border: 2px solid grey;
+  --border-radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  color: white;
+  vertical-align: middle;
+}
+
+body {
+  font-size: var(--fs);
+  padding: var(--p);
+  background-color: rgb(26, 26, 26);
+}
+
+button {
+  max-height: 41px;
+  font-size: var(--fs);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 0 .5rem;
+  background-color: black;
+}
+
+input {
+  height: var(--h);
+  width: 60%;
+  font-size: var(--fs);
+  margin: var(--bm);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: black;
+  padding: .25rem .5rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+#new-habit-button, #edit-habit-button {
+  float: right;
+  max-height: initial;
+  padding: .25rem .5rem;
+}
+
+.hide {
+  display: none;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  padding: .25rem .5rem;
+}
+
+.habit-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* .habit-stats {
+
+} */
+
+li:nth-of-type(odd) {
+  background-color: rgb(36, 36, 36);
+}
+
+span {
+  background-color: none;
+}
