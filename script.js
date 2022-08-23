@@ -2,9 +2,14 @@ const newHabitButton = document.getElementById('new-habit-button')
 const editHabitButton = document.getElementById('edit-habit-button')
 const habitNameInput = document.getElementById('habit-name-input')
 const habitsList = document.getElementById('habits-list')
+const personalStats = document.getElementById('personal-stats')
 
 let habits = {}
 let editing = ''
+let personal = {
+  level: 0,
+  points: 0
+}
 
 function updateHabitsList() {
   let habitsHTML = ''
@@ -27,6 +32,15 @@ function updateHabitsList() {
   habitsList.innerHTML = habitsHTML
 }
 
+function updatePersonalStats() {
+  personalStats.innerHTML = `
+    <i class="fa-solid fa-arrow-up-short-wide"></i>
+    <span>${personal.level}</span>
+    <i class="fa-solid fa-circle"></i>
+    <span>${personal.points}</span>
+`
+}
+
 function editHabit(key) {
   habitNameInput.value = habits[key].name
   editing = key
@@ -36,8 +50,18 @@ function editHabit(key) {
 
 function plusHabit(key) {
   habits[key].points++
-  if (habits[key].points % 7 === 0) { habits[key].level++ }
+  personal.points++
+  if (habits[key].points % 7 === 0) {
+    habits[key].level++
+    personal.level++
+  }
   updateHabitsList()
+  updatePersonalStats()
+}
+
+function load() {
+  updateHabitsList()
+  updatePersonalStats()
 }
 
 newHabitButton.addEventListener('click', () => {
@@ -66,3 +90,5 @@ editHabitButton.addEventListener('click', () => {
     newHabitButton.classList = ''
   }
 })
+
+load()
