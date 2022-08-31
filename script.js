@@ -38,7 +38,7 @@ function updatePersonalStats() {
     <span>${personal.level}</span>
     <i class="fa-solid fa-circle"></i>
     <span>${personal.points}</span>
-`
+  `
 }
 
 function editHabit(key) {
@@ -74,7 +74,7 @@ newHabitButton.addEventListener('click', () => {
 
 editHabitButton.addEventListener('click', () => {
   if (!habitNameInput.value) {return}
-  if (habitNameInput.value === editing) {
+  if (habitNameInput.value === habits[editing].name) {
     editing = ''
     habitNameInput.value = ''
     editHabitButton.classList = 'hide'
