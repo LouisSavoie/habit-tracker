@@ -11,6 +11,20 @@ let personal = {
   points: 0
 }
 
+function getLocalStorage() {
+  if (localStorage.getItem('habitTracker') === null) {
+    localStorage.habitTracker = JSON.stringify({ habits: habits, personal: personal })
+  } else {
+    let fromStorage = JSON.parse(localStorage.getItem('habitTracker'))
+    habits = fromStorage.habits
+    personal = fromStorage.personal
+  }
+}
+
+function save() {
+  localStorage.habitTracker = JSON.stringify({ habits: habits, personal: personal })
+}
+
 function updateHabitsList() {
   let habitsHTML = ''
   for ([key, habit] of Object.entries(habits)) {
@@ -57,9 +71,11 @@ function plusHabit(key) {
   }
   updateHabitsList()
   updatePersonalStats()
+  save()
 }
 
 function load() {
+  getLocalStorage()
   updateHabitsList()
   updatePersonalStats()
 }
@@ -70,6 +86,7 @@ newHabitButton.addEventListener('click', () => {
   habits[habitNameInput.value.toLowerCase()] = { name: habitNameInput.value, level: 0, points: 0 }
   habitNameInput.value = ''
   updateHabitsList()
+  save()
 })
 
 editHabitButton.addEventListener('click', () => {
@@ -86,6 +103,7 @@ editHabitButton.addEventListener('click', () => {
     editing = ''
     habitNameInput.value = ''
     updateHabitsList()
+    save()
     editHabitButton.classList = 'hide'
     newHabitButton.classList = ''
   }
