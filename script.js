@@ -1,5 +1,7 @@
 const newHabitButton = document.getElementById('new-habit-button')
 const editHabitButton = document.getElementById('edit-habit-button')
+const resetHabitButton = document.getElementById('reset-habit-button')
+const deleteHabitButton = document.getElementById('delete-habit-button')
 const habitNameInput = document.getElementById('habit-name-input')
 const habitsList = document.getElementById('habits-list')
 const personalStats = document.getElementById('personal-stats')
@@ -58,8 +60,10 @@ function updatePersonalStats() {
 function editHabit(key) {
   habitNameInput.value = habits[key].name
   editing = key
-  editHabitButton.classList = ''
-  newHabitButton.classList = 'hide'
+  editHabitButton.classList.toggle('hide')
+  resetHabitButton.classList.toggle('hide')
+  deleteHabitButton.classList.toggle('hide')
+  newHabitButton.classList.toggle('hide')
 }
 
 function plusHabit(key) {
@@ -94,8 +98,10 @@ editHabitButton.addEventListener('click', () => {
   if (habitNameInput.value === habits[editing].name) {
     editing = ''
     habitNameInput.value = ''
-    editHabitButton.classList = 'hide'
-    newHabitButton.classList = ''
+    editHabitButton.classList.toggle('hide')
+    resetHabitButton.classList.toggle('hide')
+    deleteHabitButton.classList.toggle('hide')
+    newHabitButton.classList.toggle('hide')
   } else {
     let oldHabit = habits[editing]
     delete habits[editing]
@@ -104,9 +110,42 @@ editHabitButton.addEventListener('click', () => {
     habitNameInput.value = ''
     updateHabitsList()
     save()
-    editHabitButton.classList = 'hide'
-    newHabitButton.classList = ''
+    editHabitButton.classList.toggle('hide')
+    resetHabitButton.classList.toggle('hide')
+    deleteHabitButton.classList.toggle('hide')
+    newHabitButton.classList.toggle('hide')
   }
+})
+
+resetHabitButton.addEventListener('click', () => {
+  personal.points -= habits[editing].points
+  personal.level -= habits[editing].level
+  habits[editing].points = 0
+  habits[editing].level = 0
+  editing = ''
+  habitNameInput.value = ''
+  updateHabitsList()
+  updatePersonalStats()
+  save()
+  editHabitButton.classList.toggle('hide')
+  resetHabitButton.classList.toggle('hide')
+  deleteHabitButton.classList.toggle('hide')
+  newHabitButton.classList.toggle('hide')
+})
+
+deleteHabitButton.addEventListener('click', () => {
+  personal.points -= habits[editing].points
+  personal.level -= habits[editing].level
+  delete habits[editing]
+  editing = ''
+  habitNameInput.value = ''
+  updateHabitsList()
+  updatePersonalStats()
+  save()
+  editHabitButton.classList.toggle('hide')
+  resetHabitButton.classList.toggle('hide')
+  deleteHabitButton.classList.toggle('hide')
+  newHabitButton.classList.toggle('hide')
 })
 
 load()

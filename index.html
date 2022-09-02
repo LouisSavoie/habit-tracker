@@ -12,9 +12,15 @@
 <body>
   <div id="personal-stats"></div>
   <div id="top-spacer"></div>
-  <input type="text" id="habit-name-input">
-  <button id="new-habit-button">NEW</button>
-  <button id="edit-habit-button" class="hide">EDIT</button>
+  <div id="habit-form-container">
+    <input type="text" id="habit-name-input">
+    <button id="new-habit-button" class="habit-button right"><i class="fa-solid fa-circle-plus"></i></button>
+    <button id="edit-habit-button" class="habit-button right hide"><i class="fa-solid fa-pen-to-square"></i></button>
+    <div id="habit-button-container">
+      <button id="reset-habit-button" class="habit-button hide"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+      <button id="delete-habit-button" class="habit-button hide"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  </div>
   <ul id="habits-list"></ul>
 
   <script src="script.js"></script>
